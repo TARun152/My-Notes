@@ -1,4 +1,4 @@
-let a=[];
+
 function add(){
     let text=document.getElementById('text');
     let notes=localStorage.getItem("notes");
@@ -21,6 +21,11 @@ function deletenote(index){
   Obj= JSON.parse(notes);
   }
   Obj.splice(index,1);
+  let array=localStorage.getItem("arr");
+ if(array==null)
+ a=[];
+ else
+ a=JSON.parse(array);
   for(i=0;i<a.length;i++)
 {
   if(a[i]==index)
@@ -70,7 +75,7 @@ function deletenote(index){
   else
   note.innerHTML=html;
     localStorage.setItem("notes", JSON.stringify(Obj))
-    
+    localStorage.setItem("arr",JSON.stringify(a));
 }
   let btn = document.getElementById('mybtn')
 btn.addEventListener('click',function(){
@@ -84,6 +89,11 @@ btn.addEventListener('click',function(){
   let html=""
   Obj.forEach(function(element,index){
     let count=0;
+    let array=localStorage.getItem("arr");
+ if(array==null)
+ a=[];
+ else
+ a=JSON.parse(array);
     for(i=0;i<a.length;i++){
       if(index==a[i])
       {
@@ -114,6 +124,7 @@ btn.addEventListener('click',function(){
   let note=document.getElementById('Notes');
   note.innerHTML=html;
   localStorage.setItem("notes", JSON.stringify(Obj))
+  localStorage.setItem("arr",JSON.stringify(a));
 })
 let search=document.getElementById('find');
 search.addEventListener('input',function(){
@@ -140,6 +151,11 @@ function show(){
   let html=""
   Obj.forEach(function(element,index){
     let count=0;
+    let array=localStorage.getItem("arr");
+ if(array==null)
+ a=[];
+ else
+ a=JSON.parse(array);
     for(i=0;i<a.length;i++){
       if(index==a[i])
       {
@@ -173,8 +189,14 @@ function show(){
   else
   note.innerHTML=html;
   localStorage.setItem("notes", JSON.stringify(Obj))
+  localStorage.setItem("arr",JSON.stringify(a));
 }
 function mark(index1){
+ let array=localStorage.getItem("arr");
+ if(array==null)
+ a=[];
+ else
+ a=JSON.parse(array);
   a.push(-index1);
   let notes=localStorage.getItem("notes");
   if(notes==null)
@@ -216,4 +238,5 @@ function mark(index1){
   let note=document.getElementById('Notes');
   note.innerHTML=html;
   localStorage.setItem("notes", JSON.stringify(Obj))
+  localStorage.setItem("arr",JSON.stringify(a));
 }
