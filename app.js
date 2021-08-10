@@ -249,3 +249,8 @@ function mark(index1){
   localStorage.setItem("notes", JSON.stringify(Obj))
   localStorage.setItem("arr",JSON.stringify(a));
 }
+function remove(){
+  localStorage.clear();
+  let note=document.getElementById('Notes');
+  note.innerHTML=`<h3>Nothing to show!! Please use "Add Note" to add your notes</h3>`;
+}
