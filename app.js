@@ -29,8 +29,21 @@ function deletenote(index){
   for(i=0;i<a.length;i++)
 {
   if(a[i]==index)
+  {
     a.splice(i,1);
+  }
 }
+for(i=0;i<a.length;i++)
+{
+  if(a[i]>index)
+  a[i]--;
+}
+localStorage.setItem("arr",JSON.stringify(a));
+array=localStorage.getItem("arr");
+ if(array==null)
+ a=[];
+ else
+ a=JSON.parse(array);
   localStorage.setItem("notes", JSON.stringify(Obj))
   notes=localStorage.getItem("notes");
     if(notes==null)
@@ -50,7 +63,6 @@ function deletenote(index){
           <h5 class="card-title">Note ${1+index}</h5>
           <p class="card-text">${element}</p>
           <button class="btn btn-primary" id="${index}" onclick="deletenote(this.id)">Delete Note</button>
-          <button class="btn btn-primary" id="-${index}" onclick="mark(this.id)">Mark Imp.</button>
         </div>
       </div>`
       count++;
@@ -86,14 +98,14 @@ btn.addEventListener('click',function(){
   {
   Obj= JSON.parse(notes);
   } 
-  let html=""
-  Obj.forEach(function(element,index){
-    let count=0;
-    let array=localStorage.getItem("arr");
+  let array=localStorage.getItem("arr");
  if(array==null)
  a=[];
  else
  a=JSON.parse(array);
+  let html=""
+  Obj.forEach(function(element,index){
+    let count=0;
     for(i=0;i<a.length;i++){
       if(index==a[i])
       {
@@ -102,7 +114,6 @@ btn.addEventListener('click',function(){
         <h5 class="card-title">Note ${1+index}</h5>
         <p class="card-text">${element}</p>
         <button class="btn btn-primary" id="${index}" onclick="deletenote(this.id)">Delete Note</button>
-        <button class="btn btn-primary" id="-${index}" onclick="mark(this.id)">Mark Imp.</button>
       </div>
     </div>`
     count++;
@@ -148,14 +159,14 @@ function show(){
   {
   Obj= JSON.parse(notes);
   }
-  let html=""
-  Obj.forEach(function(element,index){
-    let count=0;
-    let array=localStorage.getItem("arr");
+  let array=localStorage.getItem("arr");
  if(array==null)
  a=[];
  else
  a=JSON.parse(array);
+  let html=""
+  Obj.forEach(function(element,index){
+    let count=0;
     for(i=0;i<a.length;i++){
       if(index==a[i])
       {
@@ -164,7 +175,6 @@ function show(){
         <h5 class="card-title">Note ${1+index}</h5>
         <p class="card-text">${element}</p>
         <button class="btn btn-primary" id="${index}" onclick="deletenote(this.id)">Delete Note</button>
-        <button class="btn btn-primary" id="-${index}" onclick="mark(this.id)">Mark Imp.</button>
       </div>
     </div>`
     count++;
@@ -216,7 +226,6 @@ function mark(index1){
         <h5 class="card-title">Note ${1+index}</h5>
         <p class="card-text">${element}</p>
         <button class="btn btn-primary" id="${index}" onclick="deletenote(this.id)">Delete Note</button>
-        <button class="btn btn-primary" id="-${index}" onclick="mark(this.id)">Mark Imp.</button>
       </div>
     </div>`
     count++;
